@@ -9,6 +9,11 @@ public class Friends {
         this.dob = dob;
         this.city = city;
     }
+    public Friends(String name, int dob, int city) {
+        this.name = name;
+        this.dob = dob;
+        this.city = city;
+    }
 
     public int getId() {
         return id;
