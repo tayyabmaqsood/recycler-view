@@ -8,6 +8,11 @@ public class Friends {
         this.city = city;
     }
 
+    public Friends(String name, String dob, String city) {
+        this.name = name;
+        this.city = city;
+        setDob(dob);
+    }
 
 
     public void setId(int id) {
@@ -19,7 +24,10 @@ public class Friends {
     }
 
     public void setDob(String dob) {
-        this.dob = dob;
+        if (dob.equals("Date Of Birth"))
+            this.dob = "";
+        else
+            this.dob = dob;
     }
 
     public void setCity(String city) {

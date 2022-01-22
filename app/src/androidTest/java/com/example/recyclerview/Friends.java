@@ -3,17 +3,12 @@ package com.example.recyclerview;
 public class Friends {
 
 
-    public Friends(int id, String name, int dob, int city) {
-        this.id = id;
+    public Friends( String name, String dob, String city) {
         this.name = name;
         this.dob = dob;
         this.city = city;
     }
-    public Friends(String name, int dob, int city) {
-        this.name = name;
-        this.dob = dob;
-        this.city = city;
-    }
+
 
     public int getId() {
         return id;
@@ -31,19 +26,19 @@ public class Friends {
         this.name = name;
     }
 
-    public int getDob() {
+    public String getDob() {
         return dob;
     }
 
-    public void setDob(int dob) {
+    public void setDob(String dob) {
         this.dob = dob;
     }
 
-    public int getCity() {
+    public String getCity() {
         return city;
     }
 
-    public void setCity(int city) {
+    public void setCity(String city) {
         this.city = city;
     }
 
@@ -56,7 +51,7 @@ public class Friends {
     }
     private int id;
     private String name;
-    private int dob;
-    private int city;
+    private String dob;
+    private String city;
 
 }

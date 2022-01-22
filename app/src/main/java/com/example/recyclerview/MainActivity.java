@@ -1,6 +1,8 @@
 package com.example.recyclerview;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
@@ -8,20 +10,45 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+    //text fields variables
+    private TextView personName;
+    private TextView personCity;
+    private Button personDOB;
 
+
+    // Date Picker variables
     private DatePickerDialog datePickerDialog;
     private Button dateButton;
+
+
+    // RecyclerView Variables
+    private RecyclerView recyclerView;
+    private RecyclerView.Adapter adapter;
+    private List<Friends> friendsList;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initDatePicker();
         dateButton = findViewById(R.id.datePickerButton);
-        dateButton.setText(getTodaysDate());
+        dateButton.setText("Date Of Birth");
+
+        recyclerView = (RecyclerView) findViewById(R.id.frindsRecyclerview);
+
+        // means every item of recyclerview has fixed size
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager( new LinearLayoutManager(this));
+
+        friendsList = new ArrayList<>();
     }
 
     //<======================== Date Picker Code ============================>
@@ -90,6 +117,14 @@ public class MainActivity extends AppCompatActivity {
     //<============================ Code Other Than Date Picker ===================>
 
     public void addFriendToRecyclerView(View view) {
-
+        personName = (TextView) findViewById(R.id.personsName);
+        personCity = (TextView) findViewById(R.id.personsCity);
+        personDOB = findViewById(R.id.datePickerButton);
+        String DOB = personDOB.getText().toString();
+        Friends friend = new Friends(personName.getText().toString(),DOB, personCity.getText().toString());
+        friend.setId(friendsList.size() + 1);
+        friendsList.add(friend);
+        adapter = new MyAdapter(friendsList,this);
+        recyclerView.setAdapter(adapter);
     }
 }
